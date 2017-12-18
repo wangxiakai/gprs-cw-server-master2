@@ -12,6 +12,10 @@ myApp.controller('motion_figure_controller', ['$scope', '$http', '$location', '$
     var i;
     var localmotion = new Array();
     var localmotiondate = new Array();
+<<<<<<< HEAD
+=======
+    console.log(localData2.length);
+>>>>>>> 5f1d86e74f3f12abf134b487bb476a60569fb66e
     if (localData2<10) {
     for (i = 0; i<localData2.length; i++ ){
       
@@ -27,7 +31,10 @@ myApp.controller('motion_figure_controller', ['$scope', '$http', '$location', '$
       localmotiondate.push(localData2[i].createdDate)
       
     }; 
+<<<<<<< HEAD
     
+=======
+>>>>>>> 5f1d86e74f3f12abf134b487bb476a60569fb66e
     
     var motionchart = document.getElementById('motionchart').getContext('2d');
     console.log(motionchart);

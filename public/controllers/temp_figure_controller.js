@@ -14,7 +14,19 @@ myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$ro
     var localtempdate = new Array();
     if (localData.length<=10) {
      for (i = 0; i<localData.length; i++ ){
+<<<<<<< HEAD
 
+      
+      localtemp.push(localData[i].reading);
+      localtempdate.push(localData[i].createdDate)
+      
+    };
+    }
+
+    else
+      for (i = localData.length-10; i<localData.length; i++ ){
+=======
+>>>>>>> 5f1d86e74f3f12abf134b487bb476a60569fb66e
       
       localtemp.push(localData[i].reading);
       localtempdate.push(localData[i].createdDate)
@@ -29,6 +41,7 @@ myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$ro
       localtempdate.push(localData[i].createdDate)
       
     };
+    
     
     
     var tempchart = document.getElementById('tempchart').getContext('2d');
