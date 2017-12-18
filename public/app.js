@@ -5,6 +5,7 @@ myApp.config(function($routeProvider){
 		templateUrl: 'views/main.html'
 	})
 	.when('/temp_select_date',{
+		controller:'temp_selected_controller',
 		templateUrl: 'views/temp_select_date.html'
 	})
 	.when('/temp_data/:date',{

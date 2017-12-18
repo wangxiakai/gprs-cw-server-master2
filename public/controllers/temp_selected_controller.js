@@ -1,43 +1,42 @@
-var myApp = angular.module('myApp');
+  var myApp = angular.module('myApp');
 
-myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
-	console.log('TempFigureController loaded...');
+  myApp.controller('temp_selected_controller', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
+  console.log('TempSelectedController loaded from temp_selected_controller.js...');
 
-	$scope.getTempfigure = function(){
-    $http.get('/api/temp').then(function(responce){
-			$scope.temps = responce.data;
-      localData = responce.data;
-  	  console.log(localData);
-    
+
+
+      $scope.getTempselectedfigure = function(){
+      
+      document.getElementById('search-button').onclick = function () {
+      search_date=document.getElementById('selected-date').value;
+      console.log(search_date);
+      location.href = "#!/temp_data/"+search_date;
+    };
+
+    $http.get('/api/temp/' + search_date).then(function(responce){
+      $scope.temps = responce.data;
+      localData3 = responce.data;
+      console.log(localData3);
+
+
     var i;
     var localtemp = new Array();
     var localtempdate = new Array();
-    if (localData.length<=10) {
-     for (i = 0; i<localData.length; i++ ){
-
+    for (i = 0; i<localData3.length; i++ ){
       
-      localtemp.push(localData[i].reading);
-      localtempdate.push(localData[i].createdDate)
-      
-    };
-    }
-
-    else
-      for (i = localData.length-10; i<localData.length; i++ ){
-      
-      localtemp.push(localData[i].reading);
-      localtempdate.push(localData[i].createdDate)
+      localtemp.push(localData3[i].reading);
+      localtempdate.push(localData3[i].createdDate)
       
     };
     
     
-    var tempchart = document.getElementById('tempchart').getContext('2d');
-    console.log(tempchart);
+    var tempselectedchart = document.getElementById('tempselectedchart').getContext('2d');
+    console.log(tempselectedchart);
     Chart.defaults.global.defaultFontFamily = 'Lato';
     Chart.defaults.global.defaultFontSize = 18;
     Chart.defaults.global.defaultFontColor = '#777';
 
-    var TempChart = new Chart(tempchart, {
+    var TempselectedChart = new Chart(tempselectedchart, {
       type:'line', 
       data:{
         
@@ -90,7 +89,7 @@ myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$ro
       }
     });
   })
-};
-}])
+  };
+  }])
 
 
