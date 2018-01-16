@@ -1,3 +1,4 @@
+//var dateFormat = require('dateformat');
 var myApp = angular.module('myApp');
 
 myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams){
@@ -12,7 +13,7 @@ myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$ro
     var i;
     var localtemp = new Array();
     var localtempdate = new Array();
-    if (localData.length<=10) {
+    //if (localData.length<=10) {
      for (i = 0; i<localData.length; i++ ){
 
 
@@ -21,18 +22,37 @@ myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$ro
       localtempdate.push(localData[i].createdDate)
       
     };
-    }
+    //}
 
-    else
+    /*else
       for (i = localData.length-10; i<localData.length; i++ ){
 
       
       localtemp.push(localData[i].reading);
       localtempdate.push(localData[i].createdDate)
       
+    };*/
+    var json = JSON.stringify(localtempdate);
+    console.log("loading json date");
+    //console.log(json);
+    var dateStr = JSON.parse(json);
+    console.log(dateStr);
+    //var dateStr1 = new Date("2017-12-09T17:29:41.536Z")
+    var date_formatted = new Array();
+    var hours = new Array();
+    var minites = new Array();
+    var date_updated = new Array();
+    for (i = 0; i<dateStr.length;i++){
+    //console.log(i);
+    date_formatted[i] = new Date(dateStr[i]);
+    //console.log(date_formatted[i]);
+    hours[i] = date_formatted[i].getHours();
+    minites[i] = date_formatted[i].getMinutes();
+    //console.log(hours[i])
+    date_updated[i] = hours[i] + ":" + minites[i];
     };
-    
-
+    //dateFormat(dateStr,"isoDateTime");
+    console.log(date_updated);
     
     
     
@@ -46,7 +66,7 @@ myApp.controller('temp_figure_controller', ['$scope', '$http', '$location', '$ro
       type:'line', 
       data:{
         
-        labels: localtempdate,
+        labels: date_updated,
         datasets:[{
           label:'Temperture',
           data: localtemp,

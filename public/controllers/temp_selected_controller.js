@@ -28,7 +28,12 @@
       localtempdate.push(localData3[i].createdDate)
       
     };
-    
+    j = 0;
+    for (i = 12; i < 17; i++){
+      j = j+1;
+      localtempdate_new[j] = localtempdate[i];  
+    }
+     
     
     var tempselectedchart = document.getElementById('tempselectedchart').getContext('2d');
     console.log(tempselectedchart);
